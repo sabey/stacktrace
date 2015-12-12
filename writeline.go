@@ -26,7 +26,8 @@ func Writeline(
 	}
 	r := bufio.NewReader(f)
 	var bs []byte
-	for i := 0; i <= line; i++ {
+	// starting lines at 1 not 0
+	for i := 1; i <= line; i++ {
 		for {
 			ln, isPrefix, err := r.ReadLine()
 			if err != nil {

@@ -46,10 +46,10 @@ func StackTraceSkip(
 		}
 		if f := runtime.FuncForPC(pc); f != nil {
 			name := f.Name()
-			file, line := f.FileLine(pc)
+			// To look up the file and line number of the call itself, use pc[i]-1
+			file, line := f.FileLine(pc - 1)
 			// path/to/stacktrace.StackTrace
 			//   /full/path/to/stacktrace.go:13 +0xABC123
-			line-- // line must be decremented
 			buf.WriteString(fmt.Sprintf("%s\n\t%s:%d +0x%x\n", name, file, line, pc))
 			if file == "" || line < 0 {
 				// empty line or negative number
