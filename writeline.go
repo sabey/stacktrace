@@ -24,6 +24,7 @@ func Writeline(
 		// source code doesn't exist
 		return
 	}
+	defer f.Close()
 	r := bufio.NewReader(f)
 	var bs []byte
 	// starting lines at 1 not 0
